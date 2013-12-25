@@ -25,8 +25,10 @@ public class CustomApplicationContext extends ClassPathXmlApplicationContext {
 
     @Override
     protected BeanFactory getInternalParentBeanFactory() {
-        return new CustomBeanFactory(
-                super.getInternalParentBeanFactory(),
-                providers);
+        return new CustomBeanFactory(this, providers);
+    }
+
+    BeanFactory getOriginParentFactory() {
+        return super.getInternalParentBeanFactory();
     }
 }
